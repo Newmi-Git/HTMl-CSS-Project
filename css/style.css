@@ -1,3 +1,15 @@
+:root {
+    --bg-dark: #050505;
+    --bg-blue: #08131F;
+
+    --peach: #FCD2BA;
+    --gold-light: #FFE6D4;
+    --gold-dark: #D4B08F;
+
+    --text-main: #f1e690;
+    --text-secondary: #CDBA9A;
+}
+
 
 @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
@@ -6,10 +18,13 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100%;
-    background-color: antiquewhite;
-    overflow: hidden;
+    background-color: rgb(154, 154, 154);
+
 }
 
+body {
+    overflow-x: hidden;
+}
 
 @keyframes fadeOutMe {
     0% {
@@ -34,48 +49,135 @@ html, body {
         opacity: 100%;
     }
 }
+@keyframes openerShrink {
+    0% {
+        width: 100%;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        border-radius: 0;
+    }
+    100% {
+        width: 32vw;
+        height: 37vh;
+        top: 50%;
+        left: 35%;
+        transform: translate(-50%, -50%);
+        border-radius: 12px;
+        position: fixed;
+    }
+}
 
+@keyframes bgRadius {
+    to { border-radius: 12px; }
+}
 
+@keyframes contentShrink {
+    0%   { transform: scale(1); }
+    100% { transform: scale(0.3); }
+}
 
 .opener {
-    background-color: rgb(33, 33, 33);
-    width:100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100vh;
-    color:wheat;
+    z-index: 110;
+    pointer-events: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    animation: fadeOutMe 2s ease forwards;
-    position: fixed;
-    animation: gradientMorph 4s ease fowards;
-    z-index: 100;
-    pointer-events: none;
+    overflow: hidden;
+    transform-origin: top left;
+    animation: openerShrink 0.9s cubic-bezier(0.77, 0, 0.18, 1) 5s forwards;
+}
 
+.opener-bg {
+    position: absolute;
+    inset: 0;
+    background-color: var(--bg-dark);
+    border-radius: 0px;
+    animation: bgRadius 0.9s ease 3s forwards;
+}
+
+
+.opener-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    z-index: 2;
+    animation: contentShrink 0.9s ease 5s forwards;
+}
+
+.opener-line {
+    width: 0px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #f1e690, transparent);
+    animation: lineExpand 0.8s ease-out 0.1s forwards;
 }
 
 .opener-text {
-    color: rgb(255, 255, 255);
-    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    
+    font-family: 'Playfair Display', serif;
+    font-size: 0.5rem;
+    font-weight: 400;
+    font-style: italic;
+    color: transparent;
+    letter-spacing: 0.3em;
+    margin: 0;
+    -webkit-text-stroke: 1px rgba(255,255,255,0.15);
+    animation: textReveal 1s ease-out 0.2s forwards;
+    position: relative;
+    white-space: nowrap;
 }
+
+
 
 .home-section {
     transition: all 0.5s ease;
-    background-color: rgb(211, 211, 211);
-    height: 100%;
+    background-color: rgb(0, 0, 0);
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
 }
 
 .home-section h1 {
     font-family: 'Lobster', serif;
-    margin-right: 1200px;
-    margin-bottom: 400px;
-    font-size: 400%;
-    color: white;
-    -webkit-text-stroke: 1px rgb(51, 51, 51);
+    font-size: 600%;
+    color: #f1e690;
+    -webkit-text-stroke: 0.2px rgb(0, 0, 0);
+    margin: 0;
+}
+
+
+.overlay-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 80;
+    pointer-events: none;
+    opacity: 20%;
+}
+
+.hero-text {
+    align-self: center;
+    font-size: 50%;
+    display: flex;
+    flex-direction: column;
 }
 
 .darkmode-img {
@@ -92,45 +194,17 @@ html, body {
     display: none;
 }
 .true-dark-button {
-    transition: all 0.5s ease;
     position: fixed;
-    margin-top: 9   0px;
-    top: 560px;
-    right: 20px;
+    top: 2rem;
+    right: 2rem;
     width: 50px;
-    height:50px;
+    height: 50px;
     border-radius: 60%;
     border: 2px solid black;
     background-color: white;
-}
-
-.true-dark:checked ~ .true-dark-button {
+    z-index: 110;
     transition: all 0.5s ease;
-    background-color: rgb(41, 41, 41);
-    
 }
-
-.true-dark:checked ~ header .nav-bar {
-    transition: all 0.5s ease;
-    background-color: rgb(39, 39, 39);
-    color: rgb(253, 253, 253);
-}
-
-.true-dark:checked ~ .home-section .start-button {
-    transition: all 0.5s ease;
-    background-color: rgb(83, 83, 81);
-    color:wheat;
-
-}
-.true-dark:checked ~ .home-section {
-    transition: all 0.5s ease;
-    background-color: rgb(49, 49, 49);
-}
-.true-dark:checked ~ .home-section h1 {
-    transition: all 0.5s ease;
-    -webkit-text-stroke: 0.5px rgb(0, 0, 0);
-}
-
 
 .true-dark-button:hover {
     cursor: pointer;
@@ -152,6 +226,8 @@ html, body {
     padding-right: 20px;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: 500;
+    align-self: flex-start;
+    margin-left: 0px; /* adjust */
 }
 
 .start-button:hover {
@@ -163,26 +239,34 @@ html, body {
 .nav-bar {
     transition: all 0.5s ease;
     display: flex;
-    background-color: rgba(231, 198, 105, 0.471);
     color:rgb(61, 61, 61);
-    justify-content: center;
-    border-bottom: 2px solid black;
+    justify-content: flex-start;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+
 }
 
 .nav-bar ul {
     list-style-type: none;
     display: flex;
     align-items: center;
-    gap:200px;
+    gap: 4vw;
+    margin: 0;
+    padding-left: 20px;
+    padding-top:10px;
 }
 
 .nav-bar a {
-    color: rgb(41, 41, 41);
+    color: #f1e690;
     text-decoration: none;
+    font-weight: 500;
     position: relative;
     padding:10px 0;
     transition: color 0.3s ease;
-    z-index: 100;
+    z-index: 90;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .nav-bar a::after {
@@ -191,16 +275,109 @@ html, body {
     width: 0;
     height: 3px;
     bottom:0;
-    left:50%;
+    left:0;
     background-color: rgb(57, 57, 57);
     transition: width 0.3s ease, left 0.3s ease;
-    transform: translateX(-50%);
-    
 }
 
 .nav-bar a:hover::after {
     width: 100%;
-    left: 50%;
-    transform: translateX(-50%)
 }
 
+.menu-image {
+    max-height: 70px;
+    max-width: 70px;
+    pointer-events: none;
+    margin-left: 13px;
+    margin-top: 12px;
+    padding-bottom: 10px;
+}
+
+.menu-image:hover {
+    cursor: pointer;
+}
+
+.subheading {
+    font-size: 300%;
+    font-weight: 200;
+    margin-top: 10px;
+    color: #f1e690;
+}
+
+.main-heading{
+    font-size: 600%;
+    font-weight: 200;
+    margin-top: 10px;
+    color: #f1e690;
+}
+
+
+
+.about {
+    height: 100%;
+    width:100%;
+    background-color:white;
+    z-index: 99999;
+}
+
+.me-pic {
+    height: 170px;
+    position: absolute;
+    right: 15vw;
+    top: 58vh;
+    transform: translateY(-50%);
+}
+
+.title {
+    position: absolute;
+    top: 35%;
+    left: 65vw;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #f1e690;
+    font-size: 200%;
+    z-index: 90;
+
+}
+
+.title p {
+    font-size: 80%;
+    margin-top:0;
+    position: absolute;
+    bottom:48%;
+
+}
+
+.contact-page {
+    position: absolute;
+    color: var(--text-main);
+    left:1%;
+    bottom: 0%;
+}
+
+.contact-page p {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 120%;
+    font-weight: 500;
+}
+.contacts nav ul {
+    padding:0;
+    margin:0;
+    position: absolute;
+    left:0%;
+    list-style: none ;
+    text-decoration: none;
+    bottom:20px;
+    padding-right: 20px;
+}
+.contacts nav ul li a {
+    list-style: none ;
+    text-decoration: none;
+    color: var(--text-secondary)
+}
+
+
+.contacts nav ul li img {
+    height:20px;
+    ;
+}
