@@ -492,23 +492,37 @@ body {
     display: flex;
     flex-direction: row;
     border:2px solid white;
+
 }
 
 .card-descrip {
     display:flex;
     flex-direction: column;
-    padding:;
     border: 2px solid white;
     margin: 20px;
+    width: 300px;
+    height: auto;
+    box-sizing: border-box; /* padding included in the size, won't expand it */
+    padding: 10px;
+    overflow: hidden; /* stops text from pushing the box bigger */
+    border-radius: 5%;
+    background-color: #080808;
 }
 
 .card-descrip-right {
     display:flex;
     flex-direction: column;
-    padding:50px;
     border: 2px solid white;
     margin: 20px;
+    width: 300px;
+    height:auto;
+    box-sizing: border-box; /* padding included in the size, won't expand it */
+    padding: 20px;
+    overflow: hidden; /* stops text from pushing the box bigger */
+    border-radius: 5%;
+    background-color: #080808;
 }
+a
 .ss-card {
     margin:20px;
     padding:2vw;
@@ -525,6 +539,7 @@ body {
 
 }
 
+.ss-card:hover {}
 .ss-card img {
     width: 50px;
     height:50px;
