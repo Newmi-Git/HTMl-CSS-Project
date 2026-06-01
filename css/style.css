@@ -381,3 +381,153 @@ body {
 .contacts nav ul li img {
     height:20px;
 }
+
+.projects {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.project-container {
+    padding:20px;
+    overflow: hidden;
+}
+
+.project-card {
+    border:2px solid black;
+    margin:10px;
+    display:flex;
+    flex-direction: row;
+    border-radius: 2%;
+    overflow: hidden;
+}
+
+.project-card img {
+    max-width: 25vw;
+    margin:10px;
+    max-height: 20vw;
+    border-radius: 3%;
+}
+
+.project-description {
+    margin-left:20px;
+    max-width: 25vw;
+    max-height: 20vw;  
+    width:25vw;
+    height:20vw;
+}
+
+.project-description .open-project {
+    text-decoration: none;
+    background-color: red;
+    border-radius: 20%;
+    padding:7px;
+}
+
+.skills-page {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.skill-types {
+    display:flex;
+    flex-direction: row;
+    gap:150px;
+}
+
+.skills {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap:50px;
+}
+
+.ss-card {
+    margin:20px;
+    padding:2vw;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    border: 2px solid black;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+}
+
+.hs-skills {
+    padding:2vw;
+    margin:20px;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    display:flex;
+    border: 2px solid black;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow:hidden;
+
+}
+
+
+.gallery {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel {
+    display: flex;
+    align-items: center;
+    gap: 12px; 
+    max-width: 600px; 
+    margin: 0 auto; 
+    flex-direction: column;
+}
+
+input[type="radio"] {
+    display: none; 
+}
+
+.track-wrap {
+    flex: 1; 
+    overflow: hidden; 
+    border-radius: 12px; 
+}
+
+.track { display: flex; width: 300%; transition: transform 0.45s ease; }
+.slide { width: 33.333%; }
+.slide img { width: 100%; display: block; object-fit: cover; }
+
+
+#s1:checked ~ .track-wrap .track { transform: translateX(0%); }
+#s2:checked ~ .track-wrap .track { transform: translateX(-33.333%); }
+#s3:checked ~ .track-wrap .track { transform: translateX(-66.666%); }
+
+
+.arrow { width: 40px; height: 40px; border-radius: 50%; border: 1px solid #ccc;
+  display: flex; align-items: center; justify-content: center; cursor: pointer; }
+
+
+.prev-1, .prev-2, .prev-3,
+.next-1, .next-2, .next-3 { display: none; }
+
+#s1:checked ~ .prev-arrow .prev-3 { display: flex; } 
+#s2:checked ~ .prev-arrow .prev-1 { display: flex; }
+#s3:checked ~ .prev-arrow .prev-2 { display: flex; }
+
+#s1:checked ~ .track-wrap ~ .next-arrow .next-2 { display: flex; }
+#s2:checked ~ .track-wrap ~ .next-arrow .next-3 { display: flex; }
+#s3:checked ~ .track-wrap ~ .next-arrow .next-1 { display: flex; }
+
+.desc { display: none; }
+
+#s1:checked ~ .descriptions .desc-1 { display: block; }
+#s2:checked ~ .descriptions .desc-2 { display: block; }
+#s3:checked ~ .descriptions .desc-3 { display: block; }
